@@ -1,0 +1,32 @@
+name: imagelabeling
+description: A new Flutter application.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.0.0-dev.68.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+  image_picker: ^0.5.0
+  firebase_ml_vision:
+  firebase_core: ^0.3.0
+  firebase_auth:
+  google_sign_in:
+  toast:
+  cloud_firestore:
+  http:
+  percent_indicator:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/

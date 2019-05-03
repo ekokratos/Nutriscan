@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "95663800930",
+    "firebase_url": "https://imagelabeling-1e964.firebaseio.com",
+    "project_id": "imagelabeling-1e964",
+    "storage_bucket": "imagelabeling-1e964.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:95663800930:android:0a760fae138000ab",
+        "android_client_info": {
+          "package_name": "com.dreamdx.imagelabeling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "95663800930-rubtvpjannas7i27ebmq3glu1rb02d0b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyE743bWhYnS60pwRivtwQ67muW8vgFtE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
