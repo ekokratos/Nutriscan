@@ -1,317 +1,132 @@
-import 'dart:async';
-import 'dart:io';
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
-
-import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'DetailScreen.dart';
-import 'getcal.dart';
+import 'mainPage.dart';
 
-void main() => runApp(MaterialApp(home: _MyHomePage()));
+void main() =>
+    runApp(MaterialApp(debugShowCheckedModeBanner: false, home: MyHomePage()));
 
-class _MyHomePage extends StatefulWidget {
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MyHomePageState createState() => new _MyHomePageState();
 }
 
-class _MyHomePageState extends State<_MyHomePage> {
-  File _imageFile;
-  Size _imageSize;
-  dynamic _scanResults;
-  Information data;
+class _MyHomePageState extends State<MyHomePage> {
+  final myController_1 = TextEditingController();
+  final myController_2 = TextEditingController();
+  final myController_3 = TextEditingController();
 
-  List<String> labs = new List<String>();
-
-  Future<String> makeRequest(List<String> names) async {
-    for (var i = 0; i < names.length; i++) {
-      var url = 'https://sheetlabs.com/DDX/FoodFacts?displayname=' + names[i];
-      var response = await http.get(Uri.encodeFull(url));
-      setState(() {
-        var extractdata = json.decode(response.body);
-        if (extractdata.length != 0) {
-          data = new Information(names[i],extractdata[0]["calories"].toString(),
-              extractdata[0]["saturatedfats"].toString());
-          _showNutriDialoge();
-          return 0;
-        }
-      });
-    }
-  }
-
-  Future<void> cameraImage() async {
-    setState(() {
-      _imageFile = null;
-      _imageSize = null;
-    });
-
-    final File imageFile =
-        await ImagePicker.pickImage(source: ImageSource.camera);
-
-    if (imageFile != null) {
-      _getImageSize(imageFile);
-      _scanImage(imageFile);
-    }
-
-    setState(() {
-      _imageFile = imageFile;
-    });
-  }
-
-  Future<void> storageImage() async {
-    setState(() {
-      _imageFile = null;
-      _imageSize = null;
-    });
-
-    final File imageFile =
-        await ImagePicker.pickImage(source: ImageSource.gallery);
-
-    if (imageFile != null) {
-      _getImageSize(imageFile);
-      _scanImage(imageFile);
-    }
-
-    setState(() {
-      _imageFile = imageFile;
-    });
-  }
-
-  Future<void> _optionsDialogBox() {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            content: new SingleChildScrollView(
-              child: new ListBody(
-                children: <Widget>[
-                  GestureDetector(
-                      child: new Text('Take a picture'),
-                      onTap: () {
-                        cameraImage();
-                        //Navigator.of(context).pop();
-                      }),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                  ),
-                  GestureDetector(
-                    child: new Text('Select from gallery'),
-                    onTap: () {
-                      storageImage();
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              ),
-            ),
-          );
-        });
-  }
-
-  Future<void> _getImageSize(File imageFile) async {
-    final Completer<Size> completer = Completer<Size>();
-
-    final Image image = Image.file(imageFile);
-    image.image.resolve(const ImageConfiguration()).addListener(
-      (ImageInfo info, bool _) {
-        completer.complete(Size(
-          info.image.width.toDouble(),
-          info.image.height.toDouble(),
-        ));
-      },
-    );
-
-    final Size imageSize = await completer.future;
-    setState(() {
-      _imageSize = imageSize;
-    });
-  }
-
-  Future<void> _scanImage(File imageFile) async {
-    setState(() {
-      _scanResults = null;
-    });
-
-    final FirebaseVisionImage visionImage =
-        FirebaseVisionImage.fromFile(imageFile);
-
-    dynamic results;
-
-    final CloudLabelDetector detector =
-        FirebaseVision.instance.cloudLabelDetector();
-    results = await detector.detectInImage(visionImage);
-
-    setState(() {
-      _scanResults = results;
-      sendData();
-    });
-  }
-
-  void sendData() {
-    final List<Label> labels = _scanResults;
-
-    for (var i = 0; i < 3; i++) {
-      labs.add(labels[i].label);
-      print(labels[i].label);
-    }
-    makeRequest(labs);
-  }
-
-  void _showNutriDialoge() {
-    // flutter defined function
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: new Text(data.fName),
-
-          actions: <Widget>[
-            new Column(children: <Widget>[
-              new Text("Calories:" + data.calo),
-              new Text("Fat : " + data.fat),
-              new Container(height: 100.0),
-              new Row(
-                children: <Widget>[
-                  new Container(
-                      padding: const EdgeInsets.all(10.0),
-                      child: StreamBuilder<QuerySnapshot>(
-                        stream: Firestore.instance
-                            .collection('details')
-                            .snapshots(),
-                        builder: (context, snapshot) {
-                          if (!snapshot.hasData) return LinearProgressIndicator();
-                          final record =
-                          Record.fromSnapshot(snapshot.data.documents[0]);
-                          return FlatButton(
-                            child: new Text("Accept"),
-                            onPressed: () {
-                              Firestore.instance.runTransaction((transaction) async {
-                                DocumentSnapshot freshSnap = await transaction.get(
-                                    record.reference);
-                                await transaction.update((freshSnap.reference), {
-                                  'currentCalories': freshSnap['currentCalories'] + double.parse(data.calo).toInt(),
-                                });
-                              });
-                              Navigator.of(context).pop();
-                            },
-                          );
-                        },
-                      )),
-                  new FlatButton(
-                    child: new Text("Reject"),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              )
-            ],)
-
-          ],
-        );
-      },
-    );
+  @override
+  void dispose() {
+    // Clean up the controller when the Widget is disposed
+    myController_1.dispose();
+    myController_2.dispose();
+    myController_3.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0XFF262626),
-      body: Center(
-        child: new Column(children: [
-          new Container(height: 50.0),
-          new Container(
-              padding: const EdgeInsets.all(10.0),
-              child: StreamBuilder<QuerySnapshot>(
-                stream: Firestore.instance
-                    .collection('details')
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) return LinearProgressIndicator();
-                  final record =
-                      Record.fromSnapshot(snapshot.data.documents[0]);
-                  return CircularPercentIndicator(
-                    radius: 200.0,
-                    lineWidth: 10.0,
-                    animation: true,
-                    percent: (record.curCal / record.maxCal) / 1.0,
-                    center: Text(
-                      record.curCal.toString() + "/" + record.maxCal.toString()+"\nCalories",
-                      style: new TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 20.0,
-                        color: Colors.white,
-                      ),
-                    ),
-                    backgroundColor: Colors.grey,
-                    progressColor: const Color(0XFFA2C101),
-                  );
-                },
-              )),
-          Container(height: 120.0),
+    return new Scaffold(
+      body: new ListView(
+        children: <Widget>[
           Container(
-            height: 100.0,
-            width: 100.0,
-            child: FittedBox(
-              child: FloatingActionButton(
-                backgroundColor: const Color(0XFFA2C101),
-                onPressed: _optionsDialogBox,
-                tooltip: ' ',
-                child: const Icon(
-                  Icons.camera_alt,
-                  size: 35,
-                  color: const Color(0XFF262626),
-                ),
+            margin: EdgeInsets.all(10.0),
+            padding: EdgeInsets.only(
+                left: 10.0, top: 10.0, right: 10.0, bottom: 5.0),
+            alignment: Alignment.topLeft,
+            child: Text("Please enter your Information!",
+                style: TextStyle(fontSize: 30)),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+                left: 10.0, top: 0.0, right: 10.0, bottom: 10.0),
+            padding: EdgeInsets.only(
+                left: 10.0, top: 0.0, right: 10.0, bottom: 10.0),
+            alignment: Alignment.topLeft,
+            child: Text(
+                "This will be used in planning your diets, your exercises and helping you get more fit",
+                style: TextStyle(fontSize: 15)),
+          ),
+          new ListTile(
+            leading: const Icon(Icons.person),
+            title: new TextField(
+              decoration: new InputDecoration(
+                hintText: "Name",
               ),
             ),
           ),
-          new Container(height: 40.0),
-          Row(
-            children: <Widget>[
-              new Container(width: 60.0),
-              Container(
-                height: 75.0,
-                width: 75.0,
-                child: FittedBox(
-                  child: FloatingActionButton(
-                    backgroundColor: const Color(0XFFFDA104),
-                    tooltip: ' ',
-                    child: Center(
-                      child: Image.asset(
-                        "assets/scale.png",
-                        height: 30.0,
-                        width: 30.0,
-                      ),
-                    ),
-                  ),
-                ),
+          new ListTile(
+            leading: const Icon(Icons.cake),
+            title: new TextField(
+              controller: myController_3,
+              decoration: new InputDecoration(
+                hintText: "Age",
               ),
-              new Container(width: 90.0),
-              Container(
-                height: 75.0,
-                width: 75.0,
-                child: FittedBox(
-                  child: FloatingActionButton(
-                    backgroundColor: const Color(0XFFFDA104),
-                    tooltip: ' ',
-                    child: Center(
-                      child: Image.asset(
-                        "assets/foot.png",
-                        height: 30.0,
-                        width: 30.0,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ]),
+          new ListTile(
+            leading: const Icon(Icons.accessibility),
+            title: new TextField(
+              controller: myController_1,
+              decoration: new InputDecoration(
+                hintText: "Height",
+              ),
+            ),
+          ),
+          new ListTile(
+            leading: const Icon(Icons.pets),
+            title: new TextField(
+              controller: myController_2,
+              decoration: new InputDecoration(
+                hintText: "Weight(Current)",
+              ),
+            ),
+          ),
+          SizedBox(height: 35),
+          StreamBuilder<QuerySnapshot>(
+            stream: Firestore.instance.collection('details').snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return LinearProgressIndicator();
+              final record = Record.fromSnapshot(snapshot.data.documents[0]);
+              return Container(
+                margin: EdgeInsets.fromLTRB(120.0, 0.0, 120.0, 0.0),
+                child: RaisedButton(
+                  color: Colors.orangeAccent,
+                  child: new Text(
+                    "Submit",
+                    style: TextStyle(fontSize: 17),
+                  ),
+                  onPressed: () {
+                    Firestore.instance.runTransaction((transaction) async {
+                      DocumentSnapshot freshSnap =
+                          await transaction.get(record.reference);
+                      await transaction.update((freshSnap.reference), {
+                        'caloriesAllowed': 864 -
+                            10 * int.parse(myController_3.text) +
+                            (14 * int.parse(myController_2.text) +
+                                503 * int.parse(myController_1.text)),
+                        'height': int.parse(myController_1.text),
+                        'weight': int.parse(myController_2.text),
+                        'currentCalories': 0,
+                      });
+                    });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MyApp(),
+                      ),
+                    );
+                  },
+                ),
+              );
+            },
+          )
+        ],
       ),
     );
   }

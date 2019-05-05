@@ -20,6 +20,7 @@ dependencies:
   cloud_firestore:
   http:
   percent_indicator:
+  flutter_pedometer:
 
 dev_dependencies:
   flutter_test:

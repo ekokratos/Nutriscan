@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/shreyas/Projects/AndroidStudioProjects/sihApp/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "/home/shreyas/Projects/flutterProjects/Nutriscan/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "/home/shreyas/.gradle/caches/transforms-1/files-1.1/jetified-play-services-auth-16.0.1.aar/906560c42fe7b1fdfe8992ab53a75b44/res/values-watch-v20/values.xml",
+                    "source": "/home/shreyas/.gradle/caches/transforms-1/files-1.1/jetified-play-services-auth-16.0.1.aar/87417e81edfdb81e2d27e70e4ef66299/res/values-watch-v20/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",

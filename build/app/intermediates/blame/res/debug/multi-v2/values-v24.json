@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/home/shreyas/Projects/AndroidStudioProjects/sihApp/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
+            "outputFile": "/home/shreyas/Projects/flutterProjects/Nutriscan/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
                     "source": "/home/shreyas/.gradle/caches/transforms-1/files-1.1/media-1.0.0.aar/4640f7b8d8baf5e208d5c52a2943fb52/res/values-v24/values-v24.xml",
