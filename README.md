@@ -10,7 +10,7 @@
 ![Dependencies](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-An cross platform mobile application :iphone: developed in flutter to keep track of daily calorie needs. The calories required are calculated using BMI for which the inputs are taken from the user :bow: and stored in the database. The application is integrated with pedometer to keep count of number of steps taken by the user :walking: which helps to determine the calories burnt.
+A cross platform mobile application :iphone: developed in flutter to keep track of daily calorie needs. The calories required are calculated using BMI for which the inputs are taken from the user :bow: and stored in the database. The application is integrated with pedometer to keep count of number of steps taken by the user :walking: which helps to determine the calories burnt.
 
 <ul>
   <li> The application uses <a href="https://cloud.google.com/vision/">Vision API</a> to determine the food item :pizza: from the picture which can be either taken from the phone camera or can be selected from the Gallery.
@@ -23,10 +23,25 @@ An cross platform mobile application :iphone: developed in flutter to keep track
 # Screenshots
 
 <p float="left">
-  <img src="assets/info.jpg" width="200" height="350" />
-  <img src="assets/calorie.jpg" width="200" height="350" /> 
-  <img src="assets/picture.jpg" width="200" height="350" />
-  <img src="assets/pedometer.jpg" width="200" height="350" />
+  <img src="assets/Screenshots.png" width="900" height="500" />
 </p>
 
+# Techstacks Used
 
+<p float="left">
+  <img src="assets/Techstacks.png" width="900" height="500" />
+</p>
+
+# Installation
+
+To install flutter in your system please follow the steps in the following link
+* [Install Flutter](https://flutter.dev/get-started/)
+
+# Contributors
+
+<p float="left">
+  <a href="https://github.com/ShreyasBaliga"><img src="https://avatars3.githubusercontent.com/u/24814222?s=400&v=4" width="110" height="120" /></a>
+  <a href="https://github.com/melwinlobo18"><img src="https://avatars2.githubusercontent.com/u/29202917?s=400&v=4" width="110" height="120" /></a>
+  <a href="https://github.com/imhighoncoffee"><img src="https://avatars1.githubusercontent.com/u/20843881?s=400&v=4" width="110" height="120" /></a>
+  <a href="https://github.com/ekokratos"><img src="https://avatars3.githubusercontent.com/u/26033335?s=400&v=4" width="110" height="120" /></a>
+</p>
