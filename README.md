@@ -5,10 +5,13 @@
   <img height="50" width="150" src="/assets/logotext.png">
 </p>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Build Status](https://travis-ci.org/anfederico/Clairvoyant.svg?branch=master)
 ![Dependencies](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![](https://img.shields.io/github/license/ShreyasBaliga/NutriScan.svg)
+![](https://img.shields.io/github/forks/ShreyasBaliga/NutriScan.svg?style=social)
+![](https://img.shields.io/github/stars/ShreyasBaliga/NutriScan.svg?style=social)
+
 
 A cross platform mobile application :iphone: developed in flutter to keep track of daily calorie needs. The calories required are calculated using BMI for which the inputs are taken from the user :bow: and stored in the database. The application is integrated with pedometer to keep count of number of steps taken by the user :walking: which helps to determine the calories burnt.
 
@@ -40,8 +43,8 @@ To install flutter in your system please follow the steps in the following link
 # Contributors
 
 <p float="left">
-  <a href="https://github.com/ShreyasBaliga"><img src="https://avatars3.githubusercontent.com/u/24814222?s=400&v=4" width="110" height="120" /></a>
-  <a href="https://github.com/melwinlobo18"><img src="https://avatars2.githubusercontent.com/u/29202917?s=400&v=4" width="110" height="120" /></a>
-  <a href="https://github.com/imhighoncoffee"><img src="https://avatars1.githubusercontent.com/u/20843881?s=400&v=4" width="110" height="120" /></a>
-  <a href="https://github.com/ekokratos"><img src="https://avatars3.githubusercontent.com/u/26033335?s=400&v=4" width="110" height="120" /></a>
+  <a href="https://github.com/ShreyasBaliga"><img src="https://avatars3.githubusercontent.com/u/24814222?s=400&v=4" width="110" height="110" /></a>
+  <a href="https://github.com/melwinlobo18"><img src="https://avatars2.githubusercontent.com/u/29202917?s=400&v=4" width="110" height="110" /></a>
+  <a href="https://github.com/imhighoncoffee"><img src="https://avatars1.githubusercontent.com/u/20843881?s=400&v=4" width="110" height="110" /></a>
+  <a href="https://github.com/ekokratos"><img src="https://avatars3.githubusercontent.com/u/26033335?s=400&v=4" width="110" height="110" /></a>
 </p>
