@@ -5,7 +5,7 @@
   <img height="50" width="150" src="/assets/logotext.png">
 </p>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 ![Build Status](https://travis-ci.org/anfederico/Clairvoyant.svg?branch=master)
 ![Dependencies](https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg)
 ![](https://img.shields.io/github/license/ShreyasBaliga/NutriScan.svg)
@@ -47,4 +47,5 @@ To install flutter in your system please follow the steps in the following link
   <a href="https://github.com/melwinlobo18"><img src="https://avatars2.githubusercontent.com/u/29202917?s=400&v=4" width="110" height="110" /></a>
   <a href="https://github.com/imhighoncoffee"><img src="https://avatars1.githubusercontent.com/u/20843881?s=400&v=4" width="110" height="110" /></a>
   <a href="https://github.com/ekokratos"><img src="https://avatars3.githubusercontent.com/u/26033335?s=400&v=4" width="110" height="110" /></a>
+  <a href="https://github.com/xtremekratos"><img src="https://avatars3.githubusercontent.com/u/50409146?s=400&v=4" width="110" height="110" /></a>
 </p>
