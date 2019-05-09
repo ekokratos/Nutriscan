@@ -26,7 +26,7 @@ A cross platform mobile application :iphone: developed in flutter to keep track 
 # Screenshots
 
 <p float="left">
-  <img src="assets/AppScreenshots.jpg" width="900" height="500" />
+  <img src="assets/AppScreenshots.jpg" width="900" height="400" />
 </p>
 
 # Techstacks Used
